@@ -13,8 +13,12 @@ class MigrateCommand {
         $files = glob(__DIR__ . '/../../migrations/*.php');
         
         foreach ($files as $file) {
-            $migration->run($file);
-            echo "Migrated: " . basename($file) . "\n";
+            try {
+                $migration->run($file);
+                echo "Migrated: " . basename($file) . "\n";
+            } catch (\Throwable $th) {
+                echo "Not migrated: " . basename($file) . "\n";
+            }
         }
     }
 

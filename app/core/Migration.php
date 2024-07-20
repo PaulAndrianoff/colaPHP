@@ -30,7 +30,6 @@ class Migration {
     private function getClassName($file) {
         $basename = basename($file, '.php');
         $parts = explode('_', $basename);
-        array_shift($parts); // remove the date part
         $className = implode('', array_map('ucfirst', $parts));
         return $className;
     }

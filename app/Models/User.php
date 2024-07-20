@@ -40,7 +40,7 @@ class User extends BaseModel {
     }
 
     public function createUser($data) {
-        $sql = "INSERT INTO {$this->table} (name, email) VALUES (:name, :email)";
+        $sql = "INSERT INTO {$this->table} (names, email) VALUES (:names, :email)";
         $this->query($sql, $data);
         return $this->lastInsertId();
     }

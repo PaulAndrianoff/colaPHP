@@ -27,7 +27,8 @@ class Database {
 
     public function query($sql, $params = []) {
         $this->stmt = $this->pdo->prepare($sql);
-        return $this->stmt->execute($params);
+        $this->stmt->execute($params);
+        return $this->stmt;
     }
 
     public function fetch($sql, $params = []) {
