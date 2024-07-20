@@ -43,19 +43,22 @@ class DbPrepareCommand {
                 preg_match('/@key\((.*?)\)/', $docComment, $keyMatches);
                 preg_match('/@length\((.*?)\)/', $docComment, $lengthMatches);
                 preg_match('/@not_null/', $docComment, $notNullMatches);
+                preg_match('/@default\((.*?)\)/', $docComment, $defaultMatches);
 
                 $column = $columnMatches[1] ?? null;
                 $type = $typeMatches[1] ?? 'varchar';
                 $key = $keyMatches[1] ?? null;
                 $length = $lengthMatches[1] ?? null;
                 $notNull = isset($notNullMatches[0]);
+                $default = $defaultMatches[1] ?? null;
 
                 if ($column) {
                     $columns[$column] = [
                         'type' => $type,
                         'key' => $key,
                         'length' => $length,
-                        'not_null' => $notNull
+                        'not_null' => $notNull,
+                        'default' => $default
                     ];
                 }
             }
@@ -141,6 +144,9 @@ class DbPrepareCommand {
             }
             if ($column['not_null']) {
                 $sql .= " NOT NULL";
+            }
+            if (isset($column['default'])) {
+                $sql .= " DEFAULT " . $column['default'];
             }
             if ($column['key']) {
                 $keys = explode(';', $column['key']);
