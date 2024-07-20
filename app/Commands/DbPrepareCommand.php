@@ -2,7 +2,7 @@
 
 require_once __DIR__ . '/../core/Database.php';
 
-class DbMigrateCommand {
+class DbPrepareCommand {
     private $arguments;
     private $db;
 
@@ -249,6 +249,6 @@ class DbMigrateCommand {
     }
 
     public function getSyntax() {
-        return "php cli.php db:migrate <model>";
+        return "php cli.php db:prepare <model>";
     }
 }
