@@ -1,0 +1,5 @@
+# Ignore all files in the migrations folder
+/migrations/*
+
+# Allow the migrations folder itself
+!/migrations/
