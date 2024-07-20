@@ -8,4 +8,5 @@ return [
         'pass' => '',
     ],
     'debug' => false, // Set to false in production
+    'url' => 'http://localhost/colaPHP', // Set to false in production
 ];

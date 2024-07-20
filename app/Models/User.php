@@ -16,20 +16,28 @@ class User extends BaseModel {
     public $id;
 
     /**
-    * @column(name)
+    * @column(username)
     * @type(varchar)
     * @length(255)
     * @not_null
     **/
-    public $name;
+    public $username;
 
     /**
-    * @column(email)
+    * @column(password)
     * @type(varchar)
     * @length(255)
     * @not_null
     **/
-    public $email;
+    public $password;
+
+    /**
+    * @column(created_at)
+    * @type(TIMESTAMP)
+    * @default(CURRENT_TIMESTAMP)
+    * @not_null
+    **/
+    public $created_at;
 
     public function getUserById($id) {
         return $this->fetch("SELECT * FROM {$this->table} WHERE id = :id", ['id' => $id]);
@@ -43,5 +51,15 @@ class User extends BaseModel {
         $sql = "INSERT INTO {$this->table} (names, email) VALUES (:names, :email)";
         $this->query($sql, $data);
         return $this->lastInsertId();
+    }
+
+    public function checkCredentials($username, $password) {
+        $user = $this->fetch("SELECT * FROM {$this->table} WHERE username = :username", ['username' => $username]);
+
+        if ($user && password_verify($password, $user['password'])) {
+            return true;
+        }
+
+        return false;
     }
 }

@@ -10,7 +10,7 @@ class UserController extends Controller {
         if ($user) {
             $this->view('user', ['user' => $user]);
         } else {
-            $this->view('404');
+            redirect('/users-not-found');
         }
     }
 
