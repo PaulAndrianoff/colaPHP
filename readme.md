@@ -126,18 +126,56 @@ return [
 
 When debug mode is enabled, detailed error messages and debugging output will be displayed.
 
-CLI Commands
-Use the CLI script to create new routes, controllers, and views:
+## CLI Commands
+
+### Create a Route with a Controller and a View
+To create a new route along with its controller and view:
 
 ```sh
-php cli.php create:route /new-route NewController new-view
-```
+php cli.php create:route <route> <controller> <view>
 
+## Example:
+
+php cli.php create:route /about AboutController about
+```
 This command will:
 
-Create a new controller named NewController.php in the app/Controllers directory.
-Create a new view named new-view.php in the app/Views directory.
-Add a new route to index.php that maps /new-route to NewController@index.
+Create a new controller named AboutController.php in the app/Controllers directory.
+Create a new view named about.php in the app/Views directory.
+Add a new route to index.php that maps /about to AboutController@index.
+
+### Migrate Database
+To run all migrations:
+
+```sh
+php cli.php migrate
+```
+This command will run all the migration files in the migrations directory.
+
+### Rollback Database
+To roll back all migrations:
+
+```sh
+php cli.php rollback
+```
+This command will roll back all the migration files in the migrations directory in reverse order.
+
+### Create a Migration Based on a Model
+To create a migration based on a given model:
+
+```sh
+php cli.php db:migrate <model>
+
+## Example:
+
+php cli.php db:migrate User
+```
+This command will:
+
+Parse the User model for properties with comments indicating column definitions and the table name.
+Generate a migration file based on the parsed properties.
+Command Syntax
+Each command class includes a getSyntax method that returns the expected command syntax. If a command is used incorrectly, the correct usage will be displayed.
 
 ## License
 This project is licensed under the MIT License. See the LICENSE file for details.
