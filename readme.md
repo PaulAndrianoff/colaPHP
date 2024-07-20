@@ -164,11 +164,11 @@ This command will roll back all the migration files in the migrations directory 
 To create a migration based on a given model:
 
 ```sh
-php cli.php db:pripare <model>
+php cli.php db:prepare <model>
 
 ## Example:
 
-php cli.php db:pripare User
+php cli.php db:prepare User
 ```
 This command will:
 
