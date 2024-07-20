@@ -16,8 +16,16 @@ class Router {
         $this->routes['GET'][$this->formatRoute($uri)] = $controller;
     }
 
+    public function post($uri, $controller) {
+        $this->routes['POST'][$this->formatRoute($uri)] = $controller;
+    }
+
     public function apiGet($uri, $controller) {
         $this->apiRoutes['GET'][$this->formatRoute($uri)] = $controller;
+    }
+
+    public function apiPost($uri, $controller) {
+        $this->routes['POST'][$this->formatRoute($uri)] = $controller;
     }
 
     public function run() {
@@ -29,7 +37,7 @@ class Router {
             return;
         }
 
-        $this->show404();
+        $this->callAction('ErrorController@notFound', []);
     }
 
     private function getUri() {
@@ -58,7 +66,7 @@ class Router {
         return false;
     }
 
-    private function callAction($controllerAction, $params, $isApi) {
+    private function callAction($controllerAction, $params, $isApi = false) {
         list($controller, $action) = explode('@', $controllerAction);
         require_once __DIR__ . '/../Controllers/' . $controller . '.php';
         $controller = new $controller;
@@ -79,10 +87,5 @@ class Router {
             }
         }
         return false;
-    }
-
-    private function show404() {
-        http_response_code(404);
-        require_once __DIR__ . '/../Views/404.php';
     }
 }
