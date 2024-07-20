@@ -174,7 +174,20 @@ This command will:
 
 Parse the User model for properties with comments indicating column definitions and the table name.
 Generate a migration file based on the parsed properties.
-Command Syntax
+
+### Populate database table
+To populate a database table on a given model:
+
+```sh
+php cli.php db:populate <model> <count>
+
+## Example:
+
+php cli.php db:populate user 5
+```
+This command will created fake data for a given model
+
+### Command Syntax
 Each command class includes a getSyntax method that returns the expected command syntax. If a command is used incorrectly, the correct usage will be displayed.
 
 ## License
