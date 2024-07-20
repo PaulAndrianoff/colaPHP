@@ -156,7 +156,7 @@ This command will run all the migration files in the migrations directory.
 To roll back all migrations:
 
 ```sh
-php cli.php rollback
+php cli.php db:rollback
 ```
 This command will roll back all the migration files in the migrations directory in reverse order.
 

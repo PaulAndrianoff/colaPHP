@@ -1,6 +1,6 @@
 <?php
 
-class RollbackCommand {
+class DbRollbackCommand {
     private $arguments;
 
     public function __construct($arguments) {
@@ -19,6 +19,6 @@ class RollbackCommand {
     }
 
     public function getSyntax() {
-        return "php cli.php rollback";
+        return "php cli.php db:rollback";
     }
 }
