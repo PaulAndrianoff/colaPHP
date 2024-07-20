@@ -132,13 +132,20 @@ When debug mode is enabled, detailed error messages and debugging output will be
 To create a new route along with its controller and view:
 
 ```sh
+#syntax 1:
+php cli.php create:route <route>
+
+## Example 1:
+php cli.php create:route about
+
+#syntax 2:
 php cli.php create:route <route> <controller> <view>
 
-## Example:
+## Example 2:
+php cli.php create:route about AboutController about
 
-php cli.php create:route /about AboutController about
 ```
-This command will:
+This command with any of both command will:
 
 Create a new controller named AboutController.php in the app/Controllers directory.
 Create a new view named about.php in the app/Views directory.

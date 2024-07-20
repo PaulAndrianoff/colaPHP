@@ -8,16 +8,16 @@ class CreateRouteCommand {
     }
 
     public function execute() {
-        if (count($this->arguments) < 4) {
+        if (count($this->arguments) < 2) {
             echo "Usage: php cli.php create:route <route> <controller> <view>\n";
             return;
         }
 
         $route = $this->arguments[1];
-        $controller = $this->arguments[2];
-        $view = $this->arguments[3];
+        $controller = $this->arguments[2] ?? $route . 'Controller';
+        $view = $this->arguments[3] ?? $route;
 
-        $this->createController($controller);
+        $this->createController($controller, $view);
         $this->createView($view);
         $this->addRoute($route, $controller);
     }
@@ -26,19 +26,19 @@ class CreateRouteCommand {
         return "php cli.php create:route <route> <controller> <view>";
     }
 
-    private function createController($controller) {
-        $controllerFile = __DIR__ . '/../Controllers/' . $controller . '.php';
+    private function createController($controller, $view) {
+        $controllerName = ucfirst($controller);
+        $controllerFile = __DIR__ . '/../Controllers/' . $controllerName . '.php';
 
         if (file_exists($controllerFile)) {
             echo "Controller already exists: $controller\n";
             return;
         }
 
-        $controllerName = ucfirst($controller);
         $content = "<?php\n\n";
         $content .= "class $controllerName extends Controller {\n";
         $content .= "    public function index() {\n";
-        $content .= "        \$this->view('$controller');\n";
+        $content .= "        \$this->view('$view');\n";
         $content .= "    }\n";
         $content .= "}\n";
 
@@ -70,7 +70,7 @@ class CreateRouteCommand {
         $controllerClass = ucfirst($controller);
         $indexFile = __DIR__ . '/../../index.php';
 
-        $routeDefinition = "\$router->get('$route', '$controllerClass@index');\n";
+        $routeDefinition = "\$router->get('/$route', '$controllerClass@index');\n";
 
         $indexContent = file_get_contents($indexFile);
         $indexContent = str_replace("\$router->run();", "$routeDefinition\$router->run();", $indexContent);
