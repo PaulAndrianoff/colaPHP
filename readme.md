@@ -148,7 +148,7 @@ Add a new route to index.php that maps /about to AboutController@index.
 To run all migrations:
 
 ```sh
-php cli.php migrate
+php cli.php db:migrate
 ```
 This command will run all the migration files in the migrations directory.
 

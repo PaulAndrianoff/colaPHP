@@ -1,6 +1,6 @@
 <?php
 
-class MigrateCommand {
+class DbMigrateCommand {
     private $arguments;
 
     public function __construct($arguments) {
@@ -23,6 +23,6 @@ class MigrateCommand {
     }
 
     public function getSyntax() {
-        return "php cli.php migrate";
+        return "php cli.php db:migrate";
     }
 }
