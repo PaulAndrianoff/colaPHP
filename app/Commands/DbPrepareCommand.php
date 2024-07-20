@@ -87,11 +87,11 @@ class DbPrepareCommand {
         }
 
         $currentDate = date('YmdHis');
-        $migrationName = 'update_' . strtolower($model) . '_table_' . $currentDate . '.php';
+        $migrationName = 'update_' . $currentDate . '_' . strtolower($model) . '_table.php';
         $migrationFile = $migrationDir . '/' . $migrationName;
 
         $content = "<?php\n\n";
-        $content .= "class Update" . ucfirst($model) . "Table"  . $currentDate . " {\n";
+        $content .= "class Update" . $currentDate . ucfirst($model) . "Table" . " {\n";
         $content .= "    private \$db;\n\n";
         $content .= "    public function __construct(\$db) {\n";
         $content .= "        \$this->db = \$db;\n";
