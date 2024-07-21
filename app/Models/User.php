@@ -12,6 +12,7 @@ class User extends BaseModel {
     * @column(id)
     * @type(int)
     * @key(primary;auto_incr)
+    * @not_editable
     **/
     public $id;
 
@@ -28,6 +29,7 @@ class User extends BaseModel {
     * @type(varchar)
     * @length(255)
     * @not_null
+    * @formType(password)
     **/
     public $password;
 
@@ -36,6 +38,7 @@ class User extends BaseModel {
     * @type(TIMESTAMP)
     * @default(CURRENT_TIMESTAMP)
     * @not_null
+    * @formType(datetime-local)
     **/
     public $created_at;
 
