@@ -20,3 +20,21 @@ if (!function_exists('redirect')) {
         header('Location: ' . getConfig('url') . $route);
     }
 }
+
+if (!function_exists('isHash')) {
+    function isHash($string) {
+        $hashFormats = [
+            'md5' => '/^[a-f0-9]{32}$/i',
+            'sha1' => '/^[a-f0-9]{40}$/i',
+            'sha256' => '/^[a-f0-9]{64}$/i'
+        ];
+        
+        foreach ($hashFormats as $format => $pattern) {
+            if (preg_match($pattern, $string)) {
+                return true;
+            }
+        }
+        
+        return false;
+    }
+}

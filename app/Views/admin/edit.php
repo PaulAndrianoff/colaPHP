@@ -5,9 +5,13 @@
     <title>Admin Panel - Edit</title>
 </head>
 <body>
-    <h1>Edit Record</h1>
+    <h1>Table: <?= $modelName ?></h1>
+    <h2>Edit Record</h2>
     <form method="POST" action="<?= $id; ?>">
         <?php foreach ($data['columns'] as $column => $type): ?>
+            <?php if (isset($errors[$column])): ?>
+                <p style="color: red;"><?= $errors[$column]; ?></p>
+            <?php endif; ?>
             <label for="<?= $column; ?>"><?= ucfirst($column); ?></label>
             <input type="<?= $type ?>" id="<?= $column; ?>" name="<?= $column; ?>" value="<?= $colVal[$column]; ?>" required>
             <br>

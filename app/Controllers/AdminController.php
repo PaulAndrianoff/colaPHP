@@ -29,7 +29,7 @@ class AdminController extends Controller {
 
     public function createForm($model) {
         $columns = $this->getModelColumns($model);
-        $this->view('admin/create', ['columns' => $columns, 'model' => $model]);
+        $this->view('admin/create', ['modelName' => $model, 'columns' => $columns, 'model' => $model]);
     }
 
     public function create($model) {
@@ -37,8 +37,14 @@ class AdminController extends Controller {
         require_once __DIR__ . '/../models/' . $modelClass . '.php';
         $modelInstance = new $modelClass();
 
-        $modelInstance->create($_POST);
-        redirect('/admin/models/' . $model);
+        $result = $modelInstance->create($_POST);
+        if (is_array($result)) {
+            $columns = $this->getModelColumns($model);
+            $modelName = $model;
+            $this->view('admin/create', ['modelName' => $model, 'columns' => $columns, 'model' => $model, 'errors' => $result]);
+        } else {
+            redirect('/admin/models/' . $model);
+        }
     }
 
     public function editForm($model, $id) {
@@ -48,7 +54,7 @@ class AdminController extends Controller {
 
         $data = $modelInstance->find($id);
         $columns = $this->getModelColumns($model);
-        $this->view('admin/edit', ['columns' => $columns, 'colVal' => $data, 'id' => $id]);
+        $this->view('admin/edit', ['modelName' => $model, 'columns' => $columns, 'colVal' => $data, 'id' => $id]);
     }
 
     public function edit($model, $id) {
@@ -56,8 +62,15 @@ class AdminController extends Controller {
         require_once __DIR__ . '/../models/' . $modelClass . '.php';
         $modelInstance = new $modelClass();
 
-        $modelInstance->update($id, $_POST);
-        redirect('/admin/models/' . $model);
+        $result = $modelInstance->update($id, $_POST);
+        if (is_array($result)) {
+            $data = $modelInstance->find($id);
+            $columns = $this->getModelColumns($model);
+            $errors = $result;
+            $this->view('admin/edit', ['modelName' => $model, 'columns' => $columns, 'colVal' => $data, 'id' => $id, 'errors' => $result]);
+        } else {
+            redirect('/admin/models/' . $model);
+        }
     }
 
     public function delete($model, $id) {

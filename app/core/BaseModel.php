@@ -36,6 +36,11 @@ class BaseModel {
     }
 
     public function create($data) {
+        $newData = $this->formValidation($data);
+        if (!empty($newData['errors'])) {
+            return $newData['errors'];
+        }
+
         $columns = implode(',', array_keys($data));
         $values = ':' . implode(',:', array_keys($data));
         $sql = "INSERT INTO " . $this->getTable() . " ($columns) VALUES ($values)";
@@ -43,6 +48,11 @@ class BaseModel {
     }
 
     public function update($id, $data) {
+        $newData = $this->formValidation($data);
+        if (!empty($newData['errors'])) {
+            return $newData['errors'];
+        }
+
         $fields = '';
         foreach ($data as $key => $value) {
             $fields .= "$key = :$key,";
@@ -60,5 +70,10 @@ class BaseModel {
     private function getTable() {
         $class = $this->table;
         return strtolower($class);
+    }
+
+    public function formValidation($data) {
+        // Default validation logic, should be overridden by child classes
+        return [];
     }
 }

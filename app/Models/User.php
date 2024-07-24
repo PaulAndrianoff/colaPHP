@@ -65,4 +65,21 @@ class User extends BaseModel {
 
         return false;
     }
+
+    public function formValidation($data) {
+
+        $data['errors'] = [];
+
+        if (empty($data['username'])) {
+            $data['errors']['username'] = 'Username is required';
+        }
+
+        if (empty($data['password'])) {
+            $data['errors']['password'] = 'Password is required';
+        } elseif (false === isHash($data['password'])) {
+            $data['password'] = password_hash($data['password'], PASSWORD_DEFAULT);
+        }
+
+        return $data;
+    }
 }
