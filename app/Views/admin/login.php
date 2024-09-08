@@ -1,10 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-</head>
+<?php
+$title = 'Admin Login';
+include __DIR__ . '/../parts/header.php';
+?>
 <body>
     <h1>Admin Login</h1>
     <form method="POST" action="<?= $formRoute ?>">

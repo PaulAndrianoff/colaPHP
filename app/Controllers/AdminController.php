@@ -19,7 +19,7 @@ class AdminController extends Controller
     public function index()
     {
         $models = $this->getModels();
-        $this->view('admin/index', ['logout' => 'logout', 'configuration' => 'configuration', 'models' => $models]);
+        $this->view('admin/index', ['logout' => 'logout', 'configuration' => 'admin/configuration', 'models' => $models]);
     }
 
     public function list($model)

@@ -1,16 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-</head>
-<body>
-    <h1>Welcome to the Admin Panel</h1>
-    <ul>
-        <li><a href="<?= $configuration ?>">Configuration Panel</a></li>
-        <li><a href="<?= $logout ?>">Logout</a></li>
-    </ul>
+<?php
+$title = 'Admin Panel - Create';
+include __DIR__ . '/../parts/admin/admin_header.php';
+?>
     <h2>Models</h2>
     <ul>
         <?php foreach ($models as $model): ?>

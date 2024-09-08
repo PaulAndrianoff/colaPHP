@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel - List</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-</head>
-<body>
+<?php
+$title = 'Admin Panel - List';
+include __DIR__ . '/../parts/admin/admin_header.php';
+?>
     <h1>Admin Panel - List</h1>
     <a href="<?= strtolower($model); ?>/create">Create New</a>
     <table border="1">

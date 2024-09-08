@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>colaPHP</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-</head>
+<?php
+$title = 'colaPHP';
+include __DIR__ . '/parts/header.php';
+?>
 <body>
     <h1><?= $message ?></h1>
 </body>

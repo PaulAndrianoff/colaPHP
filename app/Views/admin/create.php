@@ -1,11 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Admin Panel - Create</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-</head>
-<body>
+<?php
+$title = 'Admin Panel - Create';
+include __DIR__ . '/../parts/admin/admin_header.php';
+?>
     <h1>Table: <?= $modelName ?></h1>
     <h2>Create New Record</h2>
     <form method="POST" action="create">

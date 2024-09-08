@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <title>Configuration Panel</title>
-    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
-    <link rel="stylesheet" href="/colaPHP/public/css/dynamic_style.php">
-</head>
-
-<body>
+<?php
+$title = 'Admin Panel';
+include __DIR__ . '/../parts/admin/admin_header.php';
+?>
     <h1>Configuration Panel</h1>
     <form id="style-config-form" method="POST" action="">
         <?php foreach ($data as $key => $value): ?>
