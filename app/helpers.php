@@ -15,6 +15,12 @@ if (!function_exists('getConfig')) {
     }
 }
 
+if (!function_exists('getUrl')) {
+    function getUrl($route) {
+        return getConfig('url') . '/' . $route;
+    }
+}
+
 if (!function_exists('redirect')) {
     function redirect($route) {
         header('Location: ' . getConfig('url') . $route);
