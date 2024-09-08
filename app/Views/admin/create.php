@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Panel - Create</title>
+    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
 </head>
 <body>
     <h1>Table: <?= $modelName ?></h1>

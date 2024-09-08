@@ -35,5 +35,7 @@ $router->post('/admin/models/{model}/create', 'AdminController@create');
 $router->get('/admin/models/{model}/edit/{id}', 'AdminController@editForm');
 $router->post('/admin/models/{model}/edit/{id}', 'AdminController@edit');
 $router->get('/admin/models/{model}/delete/{id}', 'AdminController@delete');
+$router->get('/admin/configuration', 'AdminController@configurationPanel');
+$router->post('/admin/configuration', 'AdminController@configureStyle');
 
 $router->run();

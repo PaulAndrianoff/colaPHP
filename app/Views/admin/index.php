@@ -3,10 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Admin Panel</title>
+    <link rel="stylesheet" href="/colaPHP/public/css/styles.css">
 </head>
 <body>
     <h1>Welcome to the Admin Panel</h1>
-    <a href="<?= $logout ?>">Logout</a>
+    <ul>
+        <li><a href="<?= $configuration ?>">Configuration Panel</a></li>
+        <li><a href="<?= $logout ?>">Logout</a></li>
+    </ul>
     <h2>Models</h2>
     <ul>
         <?php foreach ($models as $model): ?>
