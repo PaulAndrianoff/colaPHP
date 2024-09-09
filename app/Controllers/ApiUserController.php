@@ -2,23 +2,34 @@
 
 namespace App\Controllers;
 
+use App\Core\Controller;
 use App\Models\User;
 
-class ApiUserController {
-    public function show($id) {
+class ApiUserController extends Controller
+{
+    /**
+     * Display a single user by ID
+     */
+    public function show($id)
+    {
         $userModel = new User();
         $user = $userModel->getUserById($id);
 
         if ($user) {
-            return $user;
-        } else {
-            return 'not found';
+            return $this->jsonResponse($user, 200);
         }
+
+        return $this->jsonResponse(['message' => 'User not found'], 404);
     }
 
-    public function index() {
+    /**
+     * Display a list of all users
+     */
+    public function index()
+    {
         $userModel = new User();
         $users = $userModel->getAllUsers();
-        return $users;
+
+        return $this->jsonResponse($users, 200);
     }
 }
