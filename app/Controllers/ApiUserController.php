@@ -2,14 +2,23 @@
 
 namespace App\Controllers;
 
+use App\Models\User;
+
 class ApiUserController {
     public function show($id) {
-        // Normally, you'd fetch this data from a database.
-        $user = [
-            'id' => $id,
-            'name' => 'John Doe',
-            'email' => 'johndoe@example.com'
-        ];
-        return $user;
+        $userModel = new User();
+        $user = $userModel->getUserById($id);
+
+        if ($user) {
+            return $user;
+        } else {
+            return 'not found';
+        }
+    }
+
+    public function index() {
+        $userModel = new User();
+        $users = $userModel->getAllUsers();
+        return $users;
     }
 }
