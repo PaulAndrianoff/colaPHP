@@ -1,5 +1,8 @@
 # Ignore all files in the migrations folder
 /migrations/*
 
+/vendor/
+/vendor/*
+
 # Allow the migrations folder itself
 !/migrations/

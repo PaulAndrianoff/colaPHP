@@ -1,6 +1,10 @@
 <?php
 
-require_once __DIR__ . '/../core/Database.php';
+namespace App\Commands;
+
+use ReflectionClass;
+
+use App\core\Database;
 
 class DbPopulateCommand {
     private $arguments;

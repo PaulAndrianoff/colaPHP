@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Commands;
+
 class CreateRouteCommand {
     private $arguments;
 

@@ -1,5 +1,10 @@
 <?php
 
+namespace App\Commands;
+
+use App\core\Database;
+use App\core\Migration;
+
 class DbRollbackCommand {
     private $arguments;
 

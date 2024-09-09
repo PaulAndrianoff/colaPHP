@@ -1,9 +1,12 @@
 <?php
 
-require_once __DIR__ . '/Database.php';
+namespace App\core;
+
+use App\core\Database;
 
 class BaseModel {
     protected $db;
+    protected $table;
 
     public function __construct() {
         $this->db = Database::getInstance();

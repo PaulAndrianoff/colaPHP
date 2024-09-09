@@ -1,5 +1,7 @@
 <?php
 
+namespace App\core;
+
 class Debugger {
     public static function enable() {
         error_reporting(E_ALL);

@@ -1,5 +1,9 @@
 <?php
 
+namespace App\core;
+
+use ReflectionClass;
+
 class Command {
     private $arguments;
 

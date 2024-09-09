@@ -1,6 +1,11 @@
 <?php
 
-require_once __DIR__ . '/../core/Database.php';
+namespace App\Controllers;
+
+use ReflectionClass;
+
+use App\core\Database;
+use App\core\Controller;
 
 class AdminController extends Controller
 {
@@ -25,7 +30,12 @@ class AdminController extends Controller
     public function list($model)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $modelInstance = new $modelClass();
 
         $data = $modelInstance->all();
@@ -41,7 +51,12 @@ class AdminController extends Controller
     public function create($model)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $modelInstance = new $modelClass();
 
         $result = $modelInstance->create($_POST);
@@ -57,7 +72,12 @@ class AdminController extends Controller
     public function editForm($model, $id)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $modelInstance = new $modelClass();
 
         $data = $modelInstance->find($id);
@@ -68,14 +88,18 @@ class AdminController extends Controller
     public function edit($model, $id)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $modelInstance = new $modelClass();
 
         $result = $modelInstance->update($id, $_POST);
         if (is_array($result)) {
             $data = $modelInstance->find($id);
             $columns = $this->getModelColumns($model);
-            $errors = $result;
             $this->view('admin/edit', ['modelName' => $model, 'columns' => $columns, 'colVal' => $data, 'id' => $id, 'errors' => $result]);
         } else {
             redirect('/admin/models/' . $model);
@@ -85,7 +109,12 @@ class AdminController extends Controller
     public function delete($model, $id)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $modelInstance = new $modelClass();
 
         $modelInstance->delete($id);
@@ -95,8 +124,14 @@ class AdminController extends Controller
     private function getModelColumns($model)
     {
         $modelClass = ucfirst($model);
-        require_once __DIR__ . '/../models/' . $modelClass . '.php';
+        $modelClass = 'App\\Models\\' . $modelClass;
+
+        if (!class_exists($modelClass)) {
+            throw new \Exception("Model class $modelClass not found.");
+        }
+
         $reflection = new ReflectionClass($modelClass);
+
         $properties = $reflection->getProperties();
 
         $columns = [];

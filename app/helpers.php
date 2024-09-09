@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . '/../config.php';
+use App\core\Debugger;
 
 if (!function_exists('dd')) {
     function dd(...$vars) {

@@ -58,7 +58,6 @@ Example: app/Controllers/HomeController.php
 ```php
 
 <?php
-
 class HomeController extends Controller {
     public function index() {
         $this->view('home', ['message' => 'Welcome to colaPHP!']);
@@ -72,18 +71,17 @@ Create views in the app/Views directory. Views are simple PHP files that can dis
 Example: app/Views/home.php
 
 ```php
+<?php
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
-</head>
-<body>
-    <h1><?= $message ?></h1>
-</body>
-</html>
+namespace App\Controllers;
+
+use App\Core\Controller;
+
+class HomeController extends Controller {
+    public function index() {
+        $this->view('home', ['message' => 'Welcome to colaPHP!']);
+    }
+}
 ```
 
 ### Models
@@ -94,7 +92,9 @@ Example: app/Models/User.php
 ```php
 <?php
 
-require_once __DIR__ . '/../core/BaseModel.php';
+namespace App\Models;
+
+use App\Core\BaseModel;
 
 class User extends BaseModel {
     protected $table = 'users';
@@ -125,6 +125,25 @@ return [
 ```
 
 When debug mode is enabled, detailed error messages and debugging output will be displayed.
+
+## PSR-4 Autoloading
+All classes in the app/ directory follow PSR-4 autoloading via Composer. Ensure that your classes are properly namespaced and autoloaded by Composer.
+
+Example for setting up autoloading in composer.json:
+```json
+{
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
+```
+
+Run the following command after editing composer.json:
+```sh
+composer dump-autoload
+```
 
 ## CLI Commands
 

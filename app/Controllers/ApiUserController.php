@@ -1,5 +1,7 @@
 <?php
 
+namespace App\Controllers;
+
 class ApiUserController {
     public function show($id) {
         // Normally, you'd fetch this data from a database.

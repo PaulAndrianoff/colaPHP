@@ -1,5 +1,9 @@
 <?php
 
+namespace App\core;
+
+use Exception;
+
 class Migration {
     private $db;
 
