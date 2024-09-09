@@ -7,5 +7,5 @@ include __DIR__ . '/../header.php';
 <ul>
     <li><a href="<?= getUrl('admin') ?>">Home</a></li>
     <li><a href="<?= getUrl('admin/configuration') ?>">Configuration Panel</a></li>
-    <li><a href="<?= getUrl('logout') ?>">Logout</a></li>
+    <li><a href="<?= getUrl('admin/logout') ?>">Logout</a></li>
 </ul>
